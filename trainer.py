@@ -28,8 +28,9 @@ class Trainer:
                 
                 patches=self.getPatches(input)
 
-                patches=patches.reshape(64*self.batchsize,-1)
-                label=label.reshape(64*self.batchsize,-1)
+                patches=patches.reshape(64*self.batchsize,-1).to(device)
+                label=label.reshape(64*self.batchsize,-1).to(device)
+                
                 
                 output=self.model(patches)
                 
@@ -38,7 +39,7 @@ class Trainer:
                 loss.backward()
                 self.optimizer.step()
                 
-                if it%500==0:
+                if it%1000==0:
                     print("Epoch:",epoch,"Iteration:",it,"Loss:",loss.item())
              
                 
@@ -56,10 +57,11 @@ class Trainer:
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 model=BasicMlp(7500,30,13)
-optmimizer=torch.optim.Adam(model.parameters(),lr=0.001)
+model.to(device)
 batchsize=5
 epochs=2
 loss=torch.nn.CrossEntropyLoss()
+optmimizer=torch.optim.Adam(model.parameters(),lr=0.001)
 trainer=Trainer(model,optmimizer,batchsize,epochs,loss)
 
 trainer.train()
