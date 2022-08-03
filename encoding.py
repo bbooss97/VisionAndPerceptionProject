@@ -18,3 +18,8 @@ class Encoding:
     def encode(self,list):
         encoded=[self.encoding[i] for i in list]
         return encoded
+    def oneHotEncoding(self,list):
+        res=[[0 for i in range(13)] for j in range(len(list))]
+        for i,n in enumerate(list):
+            res[i][self.encoding[n]]=1
+        return res

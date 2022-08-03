@@ -13,5 +13,5 @@ class BasicMlp(torch.nn.Module):
         x= torch.nn.functional.relu(self.fc2(x))
         x= torch.nn.functional.relu(self.fc3(x))
         x = self.fc4(x)
-        x=torch.nn.Sigmoid(x)
+        x=torch.sigmoid(x)
         return x

@@ -39,4 +39,6 @@ class ChessDataset(torch.utils.data.Dataset):
                 else:
                     positions.append(row[i])
         encoding=Encoding()
-        return torch.tensor(encoding.encode(positions))
+        # res=torch.tensor(encoding.encode(positions))
+        res=torch.tensor(encoding.oneHotEncoding(positions)).float()
+        return res

@@ -4,28 +4,42 @@ from dataset import ChessDataset
 from nn import BasicMlp
 
 class Trainer:
-    def __init__(self,model,optimizer,batchsize,epochs,loss):
+    def __init__(self,model,optimizer,batchsize,epochs,lossfn):
         self.model=model
         self.optimizer=optimizer
         self.batchsize=batchsize
         self.epochs=epochs
-        self.loss=loss
+        self.lossfn=lossfn
         self.loadDataset()
-    
+    def getPatches(self,obs):
+        unfold=torch.nn.Unfold(kernel_size=(50,50),stride=50)
+        obs=unfold(obs)
+        obs=obs.transpose(1,2)
+        return obs
+
     def train(self):
+        it=0
         for epoch in range(self.epochs):
             for id,data in enumerate(self.trainDataloader):
-                input,label=data[0],data[1]
+                it+=1
+                input,label=data[0].float(),data[1]
+                
                 self.optimizer.zero_grad()
-                print("input {} label {}".format(input.shape,label.shape))
-                patches=self.getPatches(input,label)
+                
+                patches=self.getPatches(input)
 
-                for patch in patches:
-                    output=self.model(patch)
-                    loss=self.loss(output,label)
-                    loss.backward()
-                    self.optimizer.step()
-
+                patches=patches.reshape(64*self.batchsize,-1)
+                label=label.reshape(64*self.batchsize,-1)
+                
+                output=self.model(patches)
+                
+                loss=self.lossfn(output,label)
+                
+                loss.backward()
+                self.optimizer.step()
+                
+                if it%500==0:
+                    print("Epoch:",epoch,"Iteration:",it,"Loss:",loss.item())
              
                 
         
@@ -39,11 +53,12 @@ class Trainer:
         self.trainDataloader = DataLoader(self.trainDataset, batch_size=self.batchsize, shuffle=True)
         self.testDataloader = DataLoader(self.testDataset, batch_size=self.batchsize, shuffle=True)
 
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-model=BasicMlp(40,30,13)
+model=BasicMlp(7500,30,13)
 optmimizer=torch.optim.Adam(model.parameters(),lr=0.001)
 batchsize=5
-epochs=50
+epochs=2
 loss=torch.nn.CrossEntropyLoss()
 trainer=Trainer(model,optmimizer,batchsize,epochs,loss)
 
