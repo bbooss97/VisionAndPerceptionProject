@@ -1,16 +1,16 @@
 import torch
-import encoding
+from encoding import Encoding
 import os
 import torchvision
 
-class ChessDataset(torch.Dataset):
-    
+class ChessDataset(torch.utils.data.Dataset):
+    stride=50
     def __init__(self,type="train"):
         if type == "train":
             self.path="./train"
         else:
             self.path="./test"
-        trainTitles=os.listdir(self.path)
+        self.trainTitles=os.listdir(self.path)
         self.titleToId={i : title for i,title in enumerate(self.trainTitles) }
         
 
@@ -29,6 +29,8 @@ class ChessDataset(torch.Dataset):
     
     def positionsFromTitle(self,title):
         positions=[]
+        title=title[:-5]
+        print(title)
         rows=title.split("-")
         for row in rows:
             for i in range(len(row)):
@@ -37,5 +39,5 @@ class ChessDataset(torch.Dataset):
                         positions.append("0")
                 else:
                     positions.append(row[i])
-        encoding=encoding.Encoding()
+        encoding=Encoding()
         return torch.tensor(encoding.encode(positions))

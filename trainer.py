@@ -39,3 +39,7 @@ class Trainer:
         self.trainDataloader = DataLoader(self.trainDataset, batch_size=self.batchsize, shuffle=True)
         self.testDataloader = DataLoader(self.testDataset, batch_size=self.batchsize, shuffle=True)
 
+trainer=Trainer(None,None,None,None,None)
+trainer.loadDataset()
+print(trainer.trainDataset[0][0].shape,trainer.trainDataset[0][1].shape)
+print(trainer.testDataset[0][1])
