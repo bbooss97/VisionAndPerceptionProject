@@ -30,7 +30,6 @@ class ChessDataset(torch.utils.data.Dataset):
     def positionsFromTitle(self,title):
         positions=[]
         title=title[:-5]
-        print(title)
         rows=title.split("-")
         for row in rows:
             for i in range(len(row)):

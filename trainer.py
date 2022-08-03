@@ -1,7 +1,7 @@
 import torch
 from torch.utils.data import DataLoader
 from dataset import ChessDataset
-
+from nn import BasicMlp
 
 class Trainer:
     def __init__(self,model,optimizer,batchsize,epochs,loss):
@@ -13,11 +13,11 @@ class Trainer:
         self.loadDataset()
     
     def train(self):
-        for i in range(self.epochs):
+        for epoch in range(self.epochs):
             for id,data in enumerate(self.trainDataloader):
                 input,label=data[0],data[1]
                 self.optimizer.zero_grad()
-
+                print("input {} label {}".format(input.shape,label.shape))
                 patches=self.getPatches(input,label)
 
                 for patch in patches:
@@ -39,7 +39,12 @@ class Trainer:
         self.trainDataloader = DataLoader(self.trainDataset, batch_size=self.batchsize, shuffle=True)
         self.testDataloader = DataLoader(self.testDataset, batch_size=self.batchsize, shuffle=True)
 
-trainer=Trainer(None,None,None,None,None)
-trainer.loadDataset()
-print(trainer.trainDataset[0][0].shape,trainer.trainDataset[0][1].shape)
-print(trainer.testDataset[0][1])
+
+model=BasicMlp(40,30,13)
+optmimizer=torch.optim.Adam(model.parameters(),lr=0.001)
+batchsize=5
+epochs=50
+loss=torch.nn.CrossEntropyLoss()
+trainer=Trainer(model,optmimizer,batchsize,epochs,loss)
+
+trainer.train()
