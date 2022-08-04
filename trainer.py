@@ -64,7 +64,8 @@ model=BasicMlp(7500,50,13)
 batchsize=5
 epochs=2
 loss=torch.nn.CrossEntropyLoss()
-optmimizer=torch.optim.SGD(model.parameters(),lr=0.001,momentum=0.9,weight_decay=0.0001)
+
+optmimizer=torch.optim.Adam(model.parameters())
 trainer=Trainer(model,optmimizer,batchsize,epochs,loss)
 
 trainer.train()

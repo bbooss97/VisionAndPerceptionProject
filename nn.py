@@ -15,5 +15,5 @@ class BasicMlp(torch.nn.Module):
         x= torch.nn.functional.relu(self.fc3(x))
         x= torch.nn.functional.relu(self.fc4(x))
         x = self.fc5(x)
-        x=torch.softmax(x,dim=1)
+        x=torch.log_softmax(x,dim=1)
         return x
