@@ -21,7 +21,7 @@ class ChessDataset(torch.utils.data.Dataset):
         itempath=self.path+"/"+self.titleToId[idx]
         image = torchvision.io.read_image(itempath)
         label = self.positionsFromTitle(self.titleToId[idx])
-
+        image=image/255
         # if transform:
         #     transform(image)
 
