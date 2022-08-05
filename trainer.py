@@ -2,7 +2,7 @@ import torch
 from torch.utils.data import DataLoader
 from dataset import ChessDataset
 from nn import BasicMlp
-
+from torchmetrics import F1Score
 class Trainer:
     def __init__(self,model,optimizer,batchsize,epochs,lossfn):
         self.model=model
@@ -41,8 +41,27 @@ class Trainer:
                 loss.backward()
                 self.optimizer.step()
                 
+                # with torch.no_grad():
+                #     argmax=torch.argmax(output,dim=1)
+                #     onehotoutput=torch.zeros_like(output)
+                #     onehotoutput[torch.arange(64*self.batchsize),argmax]=1
+                #     onehotoutput.to(device)
+                    
+                #     label.float()
+                #     onehotoutput.float()
+                #     # print(onehotoutput)
+                #     onehotoutput=torch.where(onehotoutput==0,-1,onehotoutput)
+                #     # print(accuracy)
+                #     # accuracy=torch.sum(onehotoutput==label).float().item()
+                #     accuracy=torch.sum(onehotoutput==label).float().item()/(64*self.batchsize)
+                with torch.no_grad():
+                    predicted=torch.argmax(output,dim=1)
+                    label=torch.argmax(label,dim=1)
+                    f1=F1Score(num_classes=13)
+                    accuracy=f1(predicted,label)
+
                 if it%100==0:
-                    print("Epoch:",epoch,"Iteration:",it,"Loss:",loss.item())
+                    print("Epoch:",epoch,"Iteration:",it,"Loss:",loss.data.mean(),"Training accuracy:",accuracy)
              
                 
         
