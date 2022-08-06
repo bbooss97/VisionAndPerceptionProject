@@ -34,7 +34,7 @@ class Trainer:
                 patches.to(device)
                 label.to(device)
                 mod=1
-                if self.type=="resnetPretrained" or self.type=="resnet":
+                if self.type=="resnetPretrained" or self.type=="resnet" or self.type=="inception":
                     # mod=1
                     patches =patches.reshape(64*self.batchsize,50,50,3)
                     patches=torch.einsum("abcd->adbc",patches)
@@ -81,7 +81,7 @@ class Trainer:
         self.trainDataloader = DataLoader(self.trainDataset, batch_size=self.batchsize, shuffle=True)
         self.testDataloader = DataLoader(self.testDataset, batch_size=self.batchsize, shuffle=True)
 
-type="resnetPretrained"
+type="inception"
 wandb.init(project='visionAndPerceptionProject', entity='bbooss97',name=type)
 # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 device = torch.device('cpu')
@@ -97,7 +97,9 @@ elif type=="resnetPretrained":
 elif type=="resnet":
     model=torch.hub.load('pytorch/vision:v0.6.0', 'resnet18', pretrained=True)
     model.fc=torch.nn.Linear(512,13)
-
+elif type=="inception":
+    model = torch.hub.load('pytorch/vision:v0.10.0', 'inception_v3', pretrained=True)
+    model.fc=torch.nn.Linear(2048,13)
 
 model.to(device)
 wandb.watch(model)
@@ -108,4 +110,4 @@ loss=torch.nn.CrossEntropyLoss()
 optmimizer=torch.optim.Adam(model.parameters())
 trainer=Trainer(model,optmimizer,batchsize,epochs,loss,type=type)
 
-trainer.train()
+# trainer.train()
