@@ -9,8 +9,8 @@ class Labeler:
         
 
     def label(self):
-        for t in self.trainTitles[:5]:
-            
+        for id,t in enumerate(self.trainTitles):
+            print(id)
             titolo=t.replace(".jpeg",".txt")
             f=open(self.path+"/"+titolo,"w")
             objects=[]
@@ -48,5 +48,5 @@ class Labeler:
         res=torch.tensor(encod).reshape(8,8).tolist()
         return res
 
-labeler=Labeler("./trainAnnotated")
+labeler=Labeler("./testAnnotated")
 labeler.label()

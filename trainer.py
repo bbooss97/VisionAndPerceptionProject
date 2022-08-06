@@ -4,8 +4,9 @@ from dataset import ChessDataset
 from nn import BasicMlp
 from torchmetrics import F1Score
 class Trainer:
-    def __init__(self,model,optimizer,batchsize,epochs,lossfn):
+    def __init__(self,model,optimizer,batchsize,epochs,lossfn,type="mlp"):
         self.model=model
+        self.type=type
         self.optimizer=optimizer
         self.batchsize=batchsize
         self.epochs=epochs
@@ -22,20 +23,21 @@ class Trainer:
         for epoch in range(self.epochs):
             for id,data in enumerate(self.trainDataloader):
                 it+=1
-                
                 input,label=data[0].float(),data[1]
-                
-                
                 patches=self.getPatches(input)
-
                 patches=patches.reshape(64*self.batchsize,-1)
                 label=label.reshape(64*self.batchsize,-1)
                 
                 patches.to(device)
                 label.to(device)
-                
+                mod=100
+                if self.type=="resnetPretrained" or self.type=="resnet":
+                    mod=1
+                    patches =patches.reshape(64*self.batchsize,50,50,3)
+                    patches=torch.einsum("abcd->adbc",patches)
                 
                 output=self.model(patches)
+                
                 loss=self.lossfn(output,label)
                 self.optimizer.zero_grad()
                 loss.backward()
@@ -60,7 +62,7 @@ class Trainer:
                     f1=F1Score(num_classes=13)
                     accuracy=f1(predicted,label)
 
-                if it%100==0:
+                if it%mod==0:
                     print("Epoch:",epoch,"Iteration:",it,"Loss:",loss.data.mean(),"Training accuracy:",accuracy)
              
                 
@@ -76,8 +78,18 @@ class Trainer:
         self.testDataloader = DataLoader(self.testDataset, batch_size=self.batchsize, shuffle=True)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-model=BasicMlp(7500,50,13)
+type="mlp"
+if type=="mlp":
+    model=BasicMlp(7500,50,13)
+elif type=="resnetPretrained":
+    model=torch.hub.load('pytorch/vision:v0.6.0', 'resnet18', pretrained=True)
+    model.fc=torch.nn.Linear(512,13)
+    toFreeze=[j for i,j in model.named_parameters()][:-2]
+    for i in toFreeze:
+        i.requires_grad=False
+elif type=="resnet":
+    model=torch.hub.load('pytorch/vision:v0.6.0', 'resnet18', pretrained=True)
+    model.fc=torch.nn.Linear(512,13)
 
 # model.to(device)
 batchsize=5
@@ -85,6 +97,6 @@ epochs=2
 loss=torch.nn.CrossEntropyLoss()
 
 optmimizer=torch.optim.Adam(model.parameters())
-trainer=Trainer(model,optmimizer,batchsize,epochs,loss)
+trainer=Trainer(model,optmimizer,batchsize,epochs,loss,type=type)
 
 trainer.train()
