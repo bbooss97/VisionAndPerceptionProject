@@ -3,6 +3,9 @@ from torch.utils.data import DataLoader
 from dataset import ChessDataset
 from nn import BasicMlp
 from torchmetrics import F1Score
+import wandb
+# torch.set_default_tensor_type(torch.cuda.FloatTensor)
+
 class Trainer:
     def __init__(self,model,optimizer,batchsize,epochs,lossfn,type="mlp"):
         self.model=model
@@ -30,9 +33,9 @@ class Trainer:
                 
                 patches.to(device)
                 label.to(device)
-                mod=100
+                mod=1
                 if self.type=="resnetPretrained" or self.type=="resnet":
-                    mod=1
+                    # mod=1
                     patches =patches.reshape(64*self.batchsize,50,50,3)
                     patches=torch.einsum("abcd->adbc",patches)
                 
@@ -64,6 +67,7 @@ class Trainer:
 
                 if it%mod==0:
                     print("Epoch:",epoch,"Iteration:",it,"Loss:",loss.data.mean(),"Training accuracy:",accuracy)
+                    wandb.log({"epoch":epoch,"iteration":it,"loss":loss.data.mean(),"accuracy":accuracy})
              
                 
         
@@ -77,8 +81,11 @@ class Trainer:
         self.trainDataloader = DataLoader(self.trainDataset, batch_size=self.batchsize, shuffle=True)
         self.testDataloader = DataLoader(self.testDataset, batch_size=self.batchsize, shuffle=True)
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-type="mlp"
+type="resnetPretrained"
+wandb.init(project='visionAndPerceptionProject', entity='bbooss97',name=type)
+# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cpu')
+
 if type=="mlp":
     model=BasicMlp(7500,50,13)
 elif type=="resnetPretrained":
@@ -91,7 +98,9 @@ elif type=="resnet":
     model=torch.hub.load('pytorch/vision:v0.6.0', 'resnet18', pretrained=True)
     model.fc=torch.nn.Linear(512,13)
 
-# model.to(device)
+
+model.to(device)
+wandb.watch(model)
 batchsize=5
 epochs=2
 loss=torch.nn.CrossEntropyLoss()

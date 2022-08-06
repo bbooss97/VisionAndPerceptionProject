@@ -2,6 +2,7 @@ from dataset import ChessDataset
 import os
 from encoding import Encoding
 import torch
+
 class Labeler:
     def __init__(self,path):
         self.path=path
@@ -20,7 +21,7 @@ class Labeler:
             for i in range(8):
                 for j in range(8):
                     if positions[i][j]!=0:
-                        element=[positions[i][j],(i*50+25)/400,(j*50+25)/400,50/400,50/400]
+                        element=[positions[i][j],(j*50+25)/400,(i*50+25)/400,50/400,50/400]
                         objects.append(element)
                         s=""+str(element[0])+" "+str(element[1])+" "+str(element[2])+" "+str(element[3])+" "+str(element[4])+"\n"
                         f.write(s)
@@ -49,4 +50,6 @@ class Labeler:
         return res
 
 labeler=Labeler("./testAnnotated")
+labeler.label()
+labeler=Labeler("./trainAnnotated")
 labeler.label()

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "c:\Users\Andrea\Desktop\VisionAndPerceptionProject\trainer.py", line 110, in <module>
+    trainer.train()
+  File "c:\Users\Andrea\Desktop\VisionAndPerceptionProject\trainer.py", line 42, in train
+    output=self.model(patches)
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\nn\modules\module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "c:\Users\Andrea\Desktop\VisionAndPerceptionProject\nn.py", line 13, in forward
+    x = torch.nn.functional.relu(self.fc1(x))
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\nn\modules\module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\nn\modules\linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument mat1 in method wrapper_addmm)

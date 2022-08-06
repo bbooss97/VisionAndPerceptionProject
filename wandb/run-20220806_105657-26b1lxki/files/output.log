@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "c:\Users\Andrea\Desktop\VisionAndPerceptionProject\trainer.py", line 110, in <module>
+    trainer.train()
+  File "c:\Users\Andrea\Desktop\VisionAndPerceptionProject\trainer.py", line 27, in train
+    for id,data in enumerate(self.trainDataloader):
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\utils\data\dataloader.py", line 530, in __next__
+    data = self._next_data()
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\utils\data\dataloader.py", line 569, in _next_data
+    index = self._next_index()  # may raise StopIteration
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\utils\data\dataloader.py", line 521, in _next_index
+    return next(self._sampler_iter)  # may raise StopIteration
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\utils\data\sampler.py", line 226, in __iter__
+    for idx in self.sampler:
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\utils\data\sampler.py", line 122, in __iter__
+    yield from torch.randperm(n, generator=generator).tolist()
+RuntimeError: Expected a 'cuda' device type for generator but found 'cpu'

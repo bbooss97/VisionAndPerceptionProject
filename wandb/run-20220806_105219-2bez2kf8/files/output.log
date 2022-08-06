@@ -1,0 +1,13 @@
+
+Epoch: 0 Iteration: 100 Loss: tensor(0.8737) Training accuracy: tensor(0.8531)
+Epoch: 0 Iteration: 200 Loss: tensor(0.4253) Training accuracy: tensor(0.8781)
+Epoch: 0 Iteration: 300 Loss: tensor(0.3499) Training accuracy: tensor(0.8594)
+Traceback (most recent call last):
+  File "c:\Users\Andrea\Desktop\VisionAndPerceptionProject\trainer.py", line 108, in <module>
+    trainer.train()
+  File "c:\Users\Andrea\Desktop\VisionAndPerceptionProject\trainer.py", line 46, in train
+    loss.backward()
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\_tensor.py", line 363, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\autograd\__init__.py", line 173, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
