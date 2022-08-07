@@ -1,0 +1,17 @@
+Using cache found in C:\Users\Andrea/.cache\torch\hub\pytorch_vision_v0.10.0
+Traceback (most recent call last):
+  File "c:\Users\Andrea\Desktop\VisionAndPerceptionProject\trainer.py", line 144, in <module>
+    trainer.train()
+  File "c:\Users\Andrea\Desktop\VisionAndPerceptionProject\trainer.py", line 45, in train
+    output=self.model(patches)
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\nn\modules\module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torchvision\models\inception.py", line 166, in forward
+    x, aux = self._forward(x)
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torchvision\models\inception.py", line 138, in _forward
+    aux = self.AuxLogits(x)
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torch\nn\modules\module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "C:\Users\Andrea\AppData\Local\Programs\Python\Python39\lib\site-packages\torchvision\models\inception.py", line 382, in forward
+    x = F.avg_pool2d(x, kernel_size=5, stride=3)
+RuntimeError: Given input size: (768x1x1). Calculated output size: (768x-1x-1). Output size is too small

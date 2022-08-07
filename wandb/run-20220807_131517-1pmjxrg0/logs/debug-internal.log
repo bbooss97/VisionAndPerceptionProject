@@ -1,0 +1,173 @@
+2022-08-07 13:15:17,886 INFO    StreamThr :18476 [internal.py:wandb_internal():90] W&B internal server running at pid: 18476, started at: 2022-08-07 13:15:17.886032
+2022-08-07 13:15:17,888 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: status
+2022-08-07 13:15:17,890 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: status
+2022-08-07 13:15:17,891 DEBUG   SenderThread:18476 [sender.py:send():302] send: header
+2022-08-07 13:15:17,891 INFO    WriterThread:18476 [datastore.py:open_for_write():75] open: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\run-1pmjxrg0.wandb
+2022-08-07 13:15:17,941 DEBUG   SenderThread:18476 [sender.py:send():302] send: run
+2022-08-07 13:15:18,614 INFO    SenderThread:18476 [dir_watcher.py:__init__():216] watching files in: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files
+2022-08-07 13:15:18,615 INFO    SenderThread:18476 [sender.py:_start_run_threads():913] run started: 1pmjxrg0 with start time 1659870917.887025
+2022-08-07 13:15:18,615 DEBUG   SenderThread:18476 [sender.py:send():302] send: summary
+2022-08-07 13:15:18,615 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: check_version
+2022-08-07 13:15:18,615 INFO    SenderThread:18476 [sender.py:_save_file():1156] saving file wandb-summary.json with policy end
+2022-08-07 13:15:18,616 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: check_version
+2022-08-07 13:15:18,756 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: run_start
+2022-08-07 13:15:18,775 DEBUG   HandlerThread:18476 [meta.py:__init__():35] meta init
+2022-08-07 13:15:18,775 DEBUG   HandlerThread:18476 [meta.py:__init__():50] meta init done
+2022-08-07 13:15:18,775 DEBUG   HandlerThread:18476 [meta.py:probe():216] probe
+2022-08-07 13:15:18,816 DEBUG   HandlerThread:18476 [meta.py:_setup_git():206] setup git
+2022-08-07 13:15:18,898 DEBUG   HandlerThread:18476 [meta.py:_setup_git():213] setup git done
+2022-08-07 13:15:18,898 DEBUG   HandlerThread:18476 [meta.py:_save_pip():54] save pip
+2022-08-07 13:15:18,899 DEBUG   HandlerThread:18476 [meta.py:_save_pip():68] save pip done
+2022-08-07 13:15:18,899 DEBUG   HandlerThread:18476 [meta.py:probe():254] probe done
+2022-08-07 13:15:19,018 DEBUG   SenderThread:18476 [sender.py:send():302] send: files
+2022-08-07 13:15:19,019 INFO    SenderThread:18476 [sender.py:_save_file():1156] saving file wandb-metadata.json with policy now
+2022-08-07 13:15:19,019 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: stop_status
+2022-08-07 13:15:19,019 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: stop_status
+2022-08-07 13:15:19,240 DEBUG   SenderThread:18476 [sender.py:send():302] send: telemetry
+2022-08-07 13:15:19,626 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_created():275] file/dir created: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\wandb-summary.json
+2022-08-07 13:15:19,627 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_created():275] file/dir created: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\requirements.txt
+2022-08-07 13:15:19,627 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_created():275] file/dir created: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:19,627 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_created():275] file/dir created: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\wandb-metadata.json
+2022-08-07 13:15:19,740 INFO    Thread-22 :18476 [upload_job.py:push():138] Uploaded file C:\Users\Andrea\AppData\Local\Temp\tmpi3qjky6gwandb\q1xwayd8-wandb-metadata.json
+2022-08-07 13:15:21,643 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:23,666 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:25,678 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:27,706 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:29,723 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:31,742 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:33,757 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:34,253 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: stop_status
+2022-08-07 13:15:34,254 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: stop_status
+2022-08-07 13:15:35,769 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:37,787 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:39,825 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:41,182 DEBUG   SenderThread:18476 [sender.py:send():302] send: telemetry
+2022-08-07 13:15:41,837 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:42,195 DEBUG   SenderThread:18476 [sender.py:send():302] send: exit
+2022-08-07 13:15:42,195 INFO    SenderThread:18476 [sender.py:send_exit():438] handling exit code: 1
+2022-08-07 13:15:42,195 INFO    SenderThread:18476 [sender.py:send_exit():440] handling runtime: 23
+2022-08-07 13:15:42,196 INFO    SenderThread:18476 [sender.py:_save_file():1156] saving file wandb-summary.json with policy end
+2022-08-07 13:15:42,196 INFO    SenderThread:18476 [sender.py:send_exit():446] send defer
+2022-08-07 13:15:42,197 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: defer
+2022-08-07 13:15:42,197 INFO    HandlerThread:18476 [handler.py:handle_request_defer():164] handle defer: 0
+2022-08-07 13:15:42,197 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: defer
+2022-08-07 13:15:42,197 INFO    SenderThread:18476 [sender.py:send_request_defer():455] handle sender defer: 0
+2022-08-07 13:15:42,197 INFO    SenderThread:18476 [sender.py:transition_state():459] send defer: 1
+2022-08-07 13:15:42,198 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: defer
+2022-08-07 13:15:42,198 INFO    HandlerThread:18476 [handler.py:handle_request_defer():164] handle defer: 1
+2022-08-07 13:15:42,325 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: defer
+2022-08-07 13:15:42,326 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:42,326 INFO    SenderThread:18476 [sender.py:send_request_defer():455] handle sender defer: 1
+2022-08-07 13:15:42,326 INFO    SenderThread:18476 [sender.py:transition_state():459] send defer: 2
+2022-08-07 13:15:42,327 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:42,327 DEBUG   SenderThread:18476 [sender.py:send():302] send: stats
+2022-08-07 13:15:42,328 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: defer
+2022-08-07 13:15:42,328 INFO    HandlerThread:18476 [handler.py:handle_request_defer():164] handle defer: 2
+2022-08-07 13:15:42,328 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: defer
+2022-08-07 13:15:42,328 INFO    SenderThread:18476 [sender.py:send_request_defer():455] handle sender defer: 2
+2022-08-07 13:15:42,328 INFO    SenderThread:18476 [sender.py:transition_state():459] send defer: 3
+2022-08-07 13:15:42,329 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: defer
+2022-08-07 13:15:42,329 INFO    HandlerThread:18476 [handler.py:handle_request_defer():164] handle defer: 3
+2022-08-07 13:15:42,329 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: defer
+2022-08-07 13:15:42,329 INFO    SenderThread:18476 [sender.py:send_request_defer():455] handle sender defer: 3
+2022-08-07 13:15:42,329 INFO    SenderThread:18476 [sender.py:transition_state():459] send defer: 4
+2022-08-07 13:15:42,330 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: defer
+2022-08-07 13:15:42,330 INFO    HandlerThread:18476 [handler.py:handle_request_defer():164] handle defer: 4
+2022-08-07 13:15:42,331 DEBUG   SenderThread:18476 [sender.py:send():302] send: summary
+2022-08-07 13:15:42,332 INFO    SenderThread:18476 [sender.py:_save_file():1156] saving file wandb-summary.json with policy end
+2022-08-07 13:15:42,332 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: defer
+2022-08-07 13:15:42,332 INFO    SenderThread:18476 [sender.py:send_request_defer():455] handle sender defer: 4
+2022-08-07 13:15:42,332 INFO    SenderThread:18476 [sender.py:transition_state():459] send defer: 5
+2022-08-07 13:15:42,333 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: defer
+2022-08-07 13:15:42,333 INFO    HandlerThread:18476 [handler.py:handle_request_defer():164] handle defer: 5
+2022-08-07 13:15:42,333 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: defer
+2022-08-07 13:15:42,333 INFO    SenderThread:18476 [sender.py:send_request_defer():455] handle sender defer: 5
+2022-08-07 13:15:42,440 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:42,607 INFO    SenderThread:18476 [sender.py:transition_state():459] send defer: 6
+2022-08-07 13:15:42,607 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:42,607 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: defer
+2022-08-07 13:15:42,608 INFO    HandlerThread:18476 [handler.py:handle_request_defer():164] handle defer: 6
+2022-08-07 13:15:42,608 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: defer
+2022-08-07 13:15:42,608 INFO    SenderThread:18476 [sender.py:send_request_defer():455] handle sender defer: 6
+2022-08-07 13:15:42,719 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:42,844 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\wandb-summary.json
+2022-08-07 13:15:42,845 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\config.yaml
+2022-08-07 13:15:43,852 INFO    Thread-16 :18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:45,235 INFO    SenderThread:18476 [sender.py:transition_state():459] send defer: 7
+2022-08-07 13:15:45,235 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:45,236 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: defer
+2022-08-07 13:15:45,236 INFO    HandlerThread:18476 [handler.py:handle_request_defer():164] handle defer: 7
+2022-08-07 13:15:45,237 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: defer
+2022-08-07 13:15:45,237 INFO    SenderThread:18476 [sender.py:send_request_defer():455] handle sender defer: 7
+2022-08-07 13:15:45,237 INFO    SenderThread:18476 [dir_watcher.py:finish():362] shutting down directory watcher
+2022-08-07 13:15:45,343 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:45,875 INFO    SenderThread:18476 [dir_watcher.py:_on_file_modified():292] file/dir modified: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:45,875 INFO    SenderThread:18476 [dir_watcher.py:finish():392] scan: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files
+2022-08-07 13:15:45,875 INFO    SenderThread:18476 [dir_watcher.py:finish():406] scan save: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\config.yaml config.yaml
+2022-08-07 13:15:45,876 INFO    SenderThread:18476 [dir_watcher.py:finish():406] scan save: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log output.log
+2022-08-07 13:15:45,877 INFO    SenderThread:18476 [dir_watcher.py:finish():406] scan save: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\requirements.txt requirements.txt
+2022-08-07 13:15:45,881 INFO    SenderThread:18476 [dir_watcher.py:finish():406] scan save: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\wandb-metadata.json wandb-metadata.json
+2022-08-07 13:15:45,882 INFO    SenderThread:18476 [dir_watcher.py:finish():406] scan save: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\wandb-summary.json wandb-summary.json
+2022-08-07 13:15:45,890 INFO    SenderThread:18476 [sender.py:transition_state():459] send defer: 8
+2022-08-07 13:15:45,890 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:45,891 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: defer
+2022-08-07 13:15:45,891 INFO    HandlerThread:18476 [handler.py:handle_request_defer():164] handle defer: 8
+2022-08-07 13:15:45,891 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: defer
+2022-08-07 13:15:45,891 INFO    SenderThread:18476 [sender.py:send_request_defer():455] handle sender defer: 8
+2022-08-07 13:15:45,891 INFO    SenderThread:18476 [file_pusher.py:finish():171] shutting down file pusher
+2022-08-07 13:15:45,998 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:45,998 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:46,109 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:46,109 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:46,215 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:46,216 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:46,326 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:46,327 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:46,436 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:46,437 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:46,544 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:46,545 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:46,642 INFO    Thread-26 :18476 [upload_job.py:push():138] Uploaded file C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\wandb-summary.json
+2022-08-07 13:15:46,646 INFO    Thread-23 :18476 [upload_job.py:push():138] Uploaded file C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\config.yaml
+2022-08-07 13:15:46,649 INFO    Thread-25 :18476 [upload_job.py:push():138] Uploaded file C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\requirements.txt
+2022-08-07 13:15:46,653 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:46,654 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:46,687 INFO    Thread-24 :18476 [upload_job.py:push():138] Uploaded file C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\files\output.log
+2022-08-07 13:15:46,761 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:46,761 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:46,871 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:46,871 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:46,902 INFO    Thread-15 :18476 [sender.py:transition_state():459] send defer: 9
+2022-08-07 13:15:46,902 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: defer
+2022-08-07 13:15:46,902 INFO    HandlerThread:18476 [handler.py:handle_request_defer():164] handle defer: 9
+2022-08-07 13:15:46,902 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: defer
+2022-08-07 13:15:46,902 INFO    SenderThread:18476 [sender.py:send_request_defer():455] handle sender defer: 9
+2022-08-07 13:15:46,981 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:47,073 INFO    SenderThread:18476 [sender.py:transition_state():459] send defer: 10
+2022-08-07 13:15:47,073 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:47,074 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: defer
+2022-08-07 13:15:47,074 INFO    HandlerThread:18476 [handler.py:handle_request_defer():164] handle defer: 10
+2022-08-07 13:15:47,074 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: defer
+2022-08-07 13:15:47,074 INFO    SenderThread:18476 [sender.py:send_request_defer():455] handle sender defer: 10
+2022-08-07 13:15:47,074 INFO    SenderThread:18476 [sender.py:transition_state():459] send defer: 11
+2022-08-07 13:15:47,076 DEBUG   SenderThread:18476 [sender.py:send():302] send: final
+2022-08-07 13:15:47,076 DEBUG   SenderThread:18476 [sender.py:send():302] send: footer
+2022-08-07 13:15:47,077 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: defer
+2022-08-07 13:15:47,077 INFO    HandlerThread:18476 [handler.py:handle_request_defer():164] handle defer: 11
+2022-08-07 13:15:47,077 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: defer
+2022-08-07 13:15:47,078 INFO    SenderThread:18476 [sender.py:send_request_defer():455] handle sender defer: 11
+2022-08-07 13:15:47,185 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: poll_exit
+2022-08-07 13:15:47,185 DEBUG   SenderThread:18476 [sender.py:send_request():316] send_request: poll_exit
+2022-08-07 13:15:47,185 INFO    SenderThread:18476 [file_pusher.py:join():176] waiting for file pusher
+2022-08-07 13:15:47,844 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: sampled_history
+2022-08-07 13:15:47,845 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: get_summary
+2022-08-07 13:15:47,846 INFO    MainThread:18476 [wandb_run.py:_footer_history_summary_info():3305] rendering history
+2022-08-07 13:15:47,846 INFO    MainThread:18476 [wandb_run.py:_footer_history_summary_info():3337] rendering summary
+2022-08-07 13:15:47,846 INFO    MainThread:18476 [wandb_run.py:_footer_sync_info():3261] logging synced files
+2022-08-07 13:15:47,851 DEBUG   HandlerThread:18476 [handler.py:handle_request():141] handle_request: shutdown
+2022-08-07 13:15:47,851 INFO    HandlerThread:18476 [handler.py:finish():810] shutting down handler
+2022-08-07 13:15:48,080 INFO    WriterThread:18476 [datastore.py:close():279] close: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_131517-1pmjxrg0\run-1pmjxrg0.wandb
+2022-08-07 13:15:48,734 INFO    SenderThread:18476 [sender.py:finish():1312] shutting down sender
+2022-08-07 13:15:48,734 INFO    SenderThread:18476 [file_pusher.py:finish():171] shutting down file pusher
+2022-08-07 13:15:48,734 INFO    SenderThread:18476 [file_pusher.py:join():176] waiting for file pusher
+2022-08-07 13:15:48,862 INFO    MainThread:18476 [internal.py:handle_exit():80] Internal process exited

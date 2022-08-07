@@ -4,6 +4,7 @@ from dataset import ChessDataset
 from nn import BasicMlp
 from torchmetrics import F1Score
 import wandb
+import torchvision
 # torch.set_default_tensor_type(torch.cuda.FloatTensor)
 
 class Trainer:
@@ -36,7 +37,7 @@ class Trainer:
                 patches.to(device)
                 label.to(device)
                 mod=1
-                typesToChange=["resnetFrom0","resnetPretrainedFineTuneFc","resnetPretrainedFineTuneAll","inceptionFrom0","inceptionPretrainedFineTuneFc","inceptionPretrainedFineTuneAll"]
+                typesToChange=["resnetFrom0","resnetPretrainedFineTuneFc","resnetPretrainedFineTuneAll","mobilenetPretrainedFineTuneAll"]
                 if self.type in typesToChange:
                     # mod=1
                     patches =patches.reshape(64*self.batchsize,50,50,3)
@@ -76,7 +77,7 @@ class Trainer:
                     patches.to(device)
                     label.to(device)
                     mod=1
-                    typesToChange=["resnetFrom0","resnetPretrainedFineTuneFc","resnetPretrainedFineTuneAll","inceptionFrom0","inceptionPretrainedFineTuneFc","inceptionPretrainedFineTuneAll"]
+                    typesToChange=["resnetFrom0","resnetPretrainedFineTuneFc","resnetPretrainedFineTuneAll","mobilenetPretrainedFineTuneAll"]
                     if self.type in typesToChange:
                         # mod=1
                         patches =patches.reshape(64*self.batchsize,50,50,3)
@@ -99,7 +100,7 @@ class Trainer:
         self.trainDataloader = DataLoader(self.trainDataset, batch_size=self.batchsize, shuffle=True)
         self.testDataloader = DataLoader(self.testDataset, batch_size=self.batchsize, shuffle=True)
 
-type="resnetPretrainedFineTuneAll"
+type="mobilenetPretrainedFineTuneAll"
 wandb.init(project='visionAndPerceptionProject', entity='bbooss97',name=type)
 # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 device = torch.device('cpu')
@@ -116,20 +117,14 @@ elif type=="resnetPretrainedFineTuneAll":
     model=torch.hub.load('pytorch/vision:v0.6.0', 'resnet18', pretrained=True)
     model.fc=torch.nn.Linear(512,13)
 elif type=="resnetFrom0":
-    model=torch.hub.load('pytorch/vision:v0.6.0', 'resnet18')
+    model=torch.hub.load('pytorch/vision:v0.6.0', 'resnet18',pretrained=False)
     model.fc=torch.nn.Linear(512,13)
-elif type=="inceptionPretrainedFineTuneAll":
-    model = torch.hub.load('pytorch/vision:v0.10.0', 'inception_v3', pretrained=True)
-    model.fc=torch.nn.Linear(2048,13)
-elif type=="inceptionPretrainedFineTuneFc":
-    model = torch.hub.load('pytorch/vision:v0.10.0', 'inception_v3', pretrained=True)
-    model.fc=torch.nn.Linear(2048,13)
-    toFreeze=[j for i,j in model.named_parameters()][:-2]
-    for i in toFreeze:
-        i.requires_grad=False
-elif type=="inceptionFrom0":
-    model = torch.hub.load('pytorch/vision:v0.10.0', 'inception_v3')
-    model.fc=torch.nn.Linear(2048,13)
+
+elif type=="mobilenetPretrainedFineTuneAll":
+    model=torchvision.models.mobilenet_v3_small()
+    model.classifier[3]=torch.nn.Linear(1024,13)
+
+
 
 model.to(device)
 wandb.watch(model)

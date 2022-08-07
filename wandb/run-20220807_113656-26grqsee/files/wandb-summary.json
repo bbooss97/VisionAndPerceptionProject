@@ -1,1 +1,1 @@
-{"epoch_train": 0, "iteration_train": 7, "loss_train": 0.0901516005396843, "accuracy_train": 0.953125, "_timestamp": 1659865033.5311801, "_runtime": 17.415407180786133, "_step": 6}
+{"epoch_train": 4, "iteration_train": 800, "loss_train": 0.015284525230526924, "accuracy_train": 0.9937499761581421, "_timestamp": 1659866879.0896964, "_runtime": 1862.973923444748, "_step": 804, "mean_loss_test": 0.008257080800831318, "mean_accuracy_test": 0.9980469942092896, "_wandb": {"runtime": 1862}}
