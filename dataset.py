@@ -5,15 +5,16 @@ import torchvision
 
 class ChessDataset(torch.utils.data.Dataset):
     stride=50
-    def __init__(self,type="train"):
+    def __init__(self,type="train",percentage=1):
+        self.percentage=percentage
         if type == "train":
             self.path="./train"
         else:
             self.path="./test"
         self.trainTitles=os.listdir(self.path)
+        self.trainTitles=self.trainTitles[:int(len(self.trainTitles)*self.percentage)]
         self.titleToId={i : title for i,title in enumerate(self.trainTitles) }
         
-
     def __len__(self):
         return len(self.trainTitles)
 
@@ -24,7 +25,6 @@ class ChessDataset(torch.utils.data.Dataset):
         image=image/255
         # if transform:
         #     transform(image)
-
         return image, label
     
     def positionsFromTitle(self,title):

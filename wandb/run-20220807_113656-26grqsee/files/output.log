@@ -1,0 +1,7 @@
+
+Using cache found in C:\Users\Andrea/.cache\torch\hub\pytorch_vision_v0.6.0
+Epoch: 0 Iteration: 1 Loss: tensor(3.0519) Training accuracy: tensor(0.0188)
+Epoch: 0 Iteration: 2 Loss: tensor(0.9246) Training accuracy: tensor(0.8375)
+Epoch: 0 Iteration: 3 Loss: tensor(0.3613) Training accuracy: tensor(0.8969)
+Epoch: 0 Iteration: 4 Loss: tensor(0.2913) Training accuracy: tensor(0.8938)
+Epoch: 0 Iteration: 5 Loss: tensor(0.1784) Training accuracy: tensor(0.9438)

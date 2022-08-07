@@ -1,0 +1,6 @@
+2022-08-07 11:36:56,115 INFO    StreamThr :8428 [internal.py:wandb_internal():90] W&B internal server running at pid: 8428, started at: 2022-08-07 11:36:56.114774
+2022-08-07 11:36:56,118 DEBUG   HandlerThread:8428 [handler.py:handle_request():141] handle_request: status
+2022-08-07 11:36:56,120 DEBUG   SenderThread:8428 [sender.py:send_request():316] send_request: status
+2022-08-07 11:36:56,124 DEBUG   SenderThread:8428 [sender.py:send():302] send: header
+2022-08-07 11:36:56,124 INFO    WriterThread:8428 [datastore.py:open_for_write():75] open: C:\Users\Andrea\Desktop\VisionAndPerceptionProject\wandb\run-20220807_113656-26grqsee\run-26grqsee.wandb
+2022-08-07 11:36:56,176 DEBUG   SenderThread:8428 [sender.py:send():302] send: run

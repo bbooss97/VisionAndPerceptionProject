@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "c:\Users\Andrea\Desktop\VisionAndPerceptionProject\trainer.py", line 103, in <module>
+    model.to(device)
+NameError: name 'model' is not defined
