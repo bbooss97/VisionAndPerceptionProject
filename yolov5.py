@@ -12,13 +12,16 @@ model.eval()
 # img=Image.open('./trainAnnotated/1B1B1N2-1r6-n2R2k1-7b-1B6-8-8-Kn6.jpeg')
 img=Image.open('./testAnnotated/1b1B1Qr1-7p-6r1-2P5-4Rk2-1K6-4B3-8.jpeg')
 
-transform = transforms.Compose([
+fromPilToTensor = transforms.Compose([
     transforms.PILToTensor()
 ])
-  
+fromTensorToPil=transforms.Compose([
+    transforms.ToPILImage()
+])
+randomPerspective = transforms.RandomPerspective(distortion_scale=.5, p=1, interpolation=3)
 # transform = transforms.PILToTensor()
 # Convert the PIL image to Torch tensor
-img_tensor = transform(img).unsqueeze(0)
+img_tensor = randomPerspective(img)
 
 
 # Inference
