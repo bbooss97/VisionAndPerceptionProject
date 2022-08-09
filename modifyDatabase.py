@@ -23,7 +23,7 @@ class Modifier:
         # img_tensor = randomPerspective(img)
         
     def modify(self):
-        titles=self.titles[0:1]
+        titles=self.titles
         for title in titles:
             image=self.getTensorImage(title)
             positions=self.labeler.positionsFromTitle(title)
@@ -35,7 +35,7 @@ class Modifier:
                         patch=self.randomPerspective(patch)
                         # self.fromTensorToPil(patch).show()
                         image[:,50*i:50*i+50,50*j:50*j+50]=patch
-            # self.fromTensorToPil(image).show()
+            self.fromTensorToPil(image).save(self.path+"/"+title)
 
         if self.label:
             self.labeler.label()
@@ -44,7 +44,7 @@ class Modifier:
         img=Image.open(self.path+"/"+title)
         return self.fromPilToTensor(img)
     
-modifier=Modifier("./trainModified0.5")
+modifier=Modifier("./trainModified0.5",label=False,distorsion_scale=0.5)
 modifier.modify()
 # model = torch.hub.load('./yolov5/', 'custom', path='best.pt', source='local') 
 # model.eval()
