@@ -2,15 +2,20 @@ import torch
 from PIL import Image
 import numpy as npù
 import torchvision.transforms as transforms
+import os
+import random
 # Model
-model = torch.hub.load('./yolov5/', 'custom', path='best.pt', source='local') 
+model = torch.hub.load('./yolov5/', 'custom', path='yoloaugmentedbest.pt', source='local') 
 # print(model)
 # model.load_state_dict(torch.load("./best.pt"))
 model.eval()
 # print(model)
 # Images
 # img=Image.open('./trainAnnotated/1B1B1N2-1r6-n2R2k1-7b-1B6-8-8-Kn6.jpeg')
-img=Image.open('./testAnnotated/1b1B1Qr1-7p-6r1-2P5-4Rk2-1K6-4B3-8.jpeg')
+path=os.listdir("./testAnnotated")
+path=path[random.randint(0,len(path))].replace(".txt",".jpeg")
+print(path)
+img=Image.open('./testAnnotated/'+path)
 
 fromPilToTensor = transforms.Compose([
     transforms.PILToTensor()
@@ -18,7 +23,7 @@ fromPilToTensor = transforms.Compose([
 fromTensorToPil=transforms.Compose([
     transforms.ToPILImage()
 ])
-randomPerspective = transforms.RandomPerspective(distortion_scale=.5, p=1, interpolation=3)
+randomPerspective = transforms.RandomPerspective(distortion_scale=.0, p=1, interpolation=2)
 # transform = transforms.PILToTensor()
 # Convert the PIL image to Torch tensor
 img_tensor = randomPerspective(img)
