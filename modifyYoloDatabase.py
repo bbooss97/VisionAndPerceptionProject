@@ -70,6 +70,8 @@ class Modifier:
                 b=b.nonzero(as_tuple=True)
                 rows=b[1].float()
                 cols=b[2].float()
+                if rows.shape[0]==0 or cols.shape[0]==0:
+                    continue
                 iCenterRow=int(rows.mean().item())/400
                 iCenterCol=int(cols.mean().item())/400
                 iwidth=int(cols.max().item()-cols.min().item())/400
@@ -84,5 +86,5 @@ class Modifier:
         img=Image.open(self.path+"/"+title)
         return self.fromPilToTensor(img)
     
-modifier=Modifier("./trainModifiedYolo0.5",label=False,distorsion_scale=0.5)
+modifier=Modifier("./trainModifiedYolo1",label=False,distorsion_scale=1)
 modifier.yoloModification()
