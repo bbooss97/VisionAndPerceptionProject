@@ -49,37 +49,35 @@ class Modifier:
         for title in titles:
             image=self.getTensorImage(title)
             positions=self.labeler.positionsFromTitle(title)
+            titolo=title.replace(".jpeg",".txt")
+            f=open(self.path+"/"+titolo,"w")
             perspectiveImage=self.randomPerspective(image)
-            perspectiveImage=self.fromTensorToPil(perspectiveImage).show()
+            # perspectiveImage=self.fromTensorToPil(perspectiveImage).show()
             count=0
-            self.fromTensorToPil(image).show()
+            pieces={}
             imageForPositions=torch.zeros(3,400,400)
             for i in range(8):
                 for j in range(8):
                     if positions[i][j]!=0:
                         count+=1
-                        imageForPositions[:,i*50:(i+1)*50,j*50:(j+1)*50]=torch.ones(3,50,50)*count*10
-            
-            self.fromTensorToPil(self.randomPerspective(imageForPositions)).show()
+                        pieces[count] = positions[i][j]
+                        imageForPositions[:,i*50:(i+1)*50,j*50:(j+1)*50]=torch.ones(3,50,50)*count
+            imageForPositions=self.randomPerspective(imageForPositions) 
+            # self.fromTensorToPil(imageForPositions).show()
+            for i in range(1,count+1):
+                b=imageForPositions==i
+                b=b.nonzero(as_tuple=True)
+                rows=b[1].float()
+                cols=b[2].float()
+                iCenterRow=int(rows.mean().item())/400
+                iCenterCol=int(cols.mean().item())/400
+                iwidth=int(cols.max().item()-cols.min().item())/400
+                iheight=int(rows.max().item()-rows.min().item())/400
+                s=""+str(pieces[i])+" "+str(iCenterCol)+" "+str(iCenterRow)+" "+str(iwidth)+" "+str(iheight)+"\n"
+                f.write(s)
             self.randomPerspective.initializeParameters()
-    # def modify(self):
-    #     titles=self.titles
-    #     for title in titles:
-    #         image=self.getTensorImage(title)
-    #         positions=self.labeler.positionsFromTitle(title)
-    #         for i in range(8):
-    #             for j in range(8):
-    #                 if positions[i][j]!=0:
-    #                     element=[positions[i][j],(j*50+25)/400,(i*50+25)/400,50/400,50/400]
-    #                     patch=image[:,50*i:50*i+50,50*j:50*j+50]
-    #                     patch=self.randomPerspective(patch)
-    #                     # self.fromTensorToPil(patch).show()
-    #                     image[:,50*i:50*i+50,50*j:50*j+50]=patch
-    #         # self.fromTensorToPil(image).save(self.path+"/"+title)
-    #         self.fromTensorToPil(image).show()
-    #         self.randomPerspective.initializeParameters()
-    #     if self.label:
-    #         self.labeler.label()
+            f.close()
+
 
     def getTensorImage(self,title):
         img=Image.open(self.path+"/"+title)
