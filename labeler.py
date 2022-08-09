@@ -49,7 +49,8 @@ class Labeler:
         res=torch.tensor(encod).reshape(8,8).tolist()
         return res
 
-labeler=Labeler("./testAnnotated")
-labeler.label()
-labeler=Labeler("./trainAnnotated")
-labeler.label()
+if __name__=='__main__':
+    labeler=Labeler("./testAnnotated")
+    labeler.label()
+    labeler=Labeler("./trainAnnotated")
+    labeler.label()
