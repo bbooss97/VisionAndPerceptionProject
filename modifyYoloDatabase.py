@@ -45,13 +45,14 @@ class Modifier:
         self.randomPerspective = PerspectiveTransorm(distortion_scale=self.distorsion_scale, p=1, interpolation=2)
     
     def yoloModification(self):
-        titles=self.titles[:1]
+        titles=self.titles
         for title in titles:
             image=self.getTensorImage(title)
             positions=self.labeler.positionsFromTitle(title)
             titolo=title.replace(".jpeg",".txt")
             f=open(self.path+"/"+titolo,"w")
             perspectiveImage=self.randomPerspective(image)
+            self.fromTensorToPil(perspectiveImage).save(self.path+"/"+title)
             # perspectiveImage=self.fromTensorToPil(perspectiveImage).show()
             count=0
             pieces={}
