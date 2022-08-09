@@ -4,3 +4,6 @@ test/
 trainAnnotated/
 testAnnotated/
 trainModified0.5/
+trainModified0.25/
+trainModified0.75/
+trainModified1/
