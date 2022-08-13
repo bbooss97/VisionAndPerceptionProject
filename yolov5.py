@@ -1,16 +1,18 @@
 import torch
 from PIL import Image
-import numpy as npù
+import numpy as np
 import torchvision.transforms as transforms
 import os
 import random
 import sys
 import torch.optim as optim
-sys.path.append("./yolov5/utils")
-sys.path.append("./yolov5")
-from MyLoss import ComputeLoss
+# sys.path.append("./yolov5/utils")
+# sys.path.append("./yolov5")
+# from MyLoss import ComputeLoss
 # Model
-model = torch.hub.load('./yolov5/', 'custom', path='yoloaugmentedbest.pt', source='local') 
+trainedModels=["normalTask.pt","normalTaskAugmented.pt","modified0.5.pt","modified0.75.pt",'modified1']
+# model = torch.hub.load('./yolov5/', 'custom', path='yoloaugmentedbest.pt', source='local') 
+model = torch.hub.load('./yolov5/', 'custom', path=trainedModels[4], source='local') 
 for params in model.parameters():
     params.requires_grad = True
 # model.train()
@@ -32,7 +34,7 @@ fromPilToTensor = transforms.Compose([
 fromTensorToPil=transforms.Compose([
     transforms.ToPILImage()
 ])
-randomPerspective = transforms.RandomPerspective(distortion_scale=.0, p=1, interpolation=2)
+randomPerspective = transforms.RandomPerspective(distortion_scale=0.75, p=1, interpolation=2)
 # transform = transforms.PILToTensor()
 # Convert the PIL image to Torch tensor
 img_tensor = randomPerspective(img)
@@ -44,21 +46,22 @@ img_tensor = randomPerspective(img)
 # print(tensore.shape)
 
 results = model(img_tensor)
-optimizer.zero_grad()
-r=results.pred[0].float()
-loss=(torch.ones_like(r)-r).sum()
-print(loss)
-loss.requires_grad=True
-loss.backward()
-optimizer.step()
-print(r.shape)
+results.show()
+# optimizer.zero_grad()
+# r=results.pred[0].float()
+# loss=(torch.ones_like(r)-r).sum()
+# print(loss)
+# loss.requires_grad=True
+# loss.backward()
+# optimizer.step()
+# print(r.shape)
 # print(type(model.model[-1]))
 # print(model[-1])
 # model.train()
 # loss=ComputeLoss(model)
 
 # Results
-results.show()
+
 # results.save()  # or .show()
 
 # results.xyxy[0]  # img1 predictions (tensor)

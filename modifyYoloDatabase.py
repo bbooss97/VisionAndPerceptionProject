@@ -85,6 +85,7 @@ class Modifier:
     def getTensorImage(self,title):
         img=Image.open(self.path+"/"+title)
         return self.fromPilToTensor(img)
-    
-modifier=Modifier("./trainModifiedYolo1",label=False,distorsion_scale=1)
+
+
+modifier=Modifier("./testModifiedYolo0.5",label=False,distorsion_scale=1)
 modifier.yoloModification()
