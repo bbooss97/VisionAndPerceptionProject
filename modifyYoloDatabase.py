@@ -87,5 +87,5 @@ class Modifier:
         return self.fromPilToTensor(img)
 
 
-modifier=Modifier("./testModifiedYolo0.5",label=False,distorsion_scale=1)
-modifier.yoloModification()
+# modifier=Modifier("./testModifiedYolo0.5",label=False,distorsion_scale=1)
+# modifier.yoloModification()

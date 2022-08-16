@@ -6,7 +6,7 @@ from torchmetrics import F1Score
 import wandb
 import torchvision
 # torch.set_default_tensor_type(torch.cuda.FloatTensor)
-
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 class Trainer:
     def __init__(self,model,optimizer,batchsize,epochs,lossfn,percentage,type="mlp"):
         self.model=model
@@ -30,21 +30,20 @@ class Trainer:
             for id,data in enumerate(self.trainDataloader):
                 it+=1
                 input,label=data[0].float(),data[1]
+                input,label=input.to(device),label.to(device)
+                if input.shape[0]!=self.batchsize:
+                    continue
                 patches=self.getPatches(input)
                 patches=patches.reshape(64*self.batchsize,-1)
                 label=label.reshape(64*self.batchsize,-1)
-                
-                patches.to(device)
-                label.to(device)
                 mod=1
                 typesToChange=["resnetFrom0","resnetPretrainedFineTuneFc","resnetPretrainedFineTuneAll","mobilenetPretrainedFineTuneAll"]
                 if self.type in typesToChange:
                     # mod=1
                     patches =patches.reshape(64*self.batchsize,50,50,3)
                     patches=torch.einsum("abcd->adbc",patches)
-                
+                # patches=patches.to(device)
                 output=self.model(patches)
-                
                 loss=self.lossfn(output,label)
                 self.optimizer.zero_grad()
                 loss.backward()
@@ -54,6 +53,7 @@ class Trainer:
                     predicted=torch.argmax(output,dim=1)
                     label=torch.argmax(label,dim=1)
                     f1=F1Score(num_classes=13)
+                    predicted,label=predicted.cpu(),label.cpu()
                     accuracy=f1(predicted,label)
 
                 if it%mod==0:
@@ -70,10 +70,12 @@ class Trainer:
             for id,data in enumerate(self.testDataloader):
                     it+=1
                     input,label=data[0].float(),data[1]
+                    input,label=input.to(device),label.to(device)
+                    if input.shape[0]!=self.batchsize:
+                        continue
                     patches=self.getPatches(input)
                     patches=patches.reshape(64*self.batchsize,-1)
                     label=label.reshape(64*self.batchsize,-1)
-                    
                     patches.to(device)
                     label.to(device)
                     mod=1
@@ -88,6 +90,7 @@ class Trainer:
                     predicted=torch.argmax(output,dim=1)
                     label=torch.argmax(label,dim=1)
                     f1=F1Score(num_classes=13)
+                    predicted,label=predicted.cpu(),label.cpu()
                     accuracy=f1(predicted,label)
                     test_accuracy+=accuracy
                     test_loss+=loss.data.mean()
@@ -102,8 +105,8 @@ class Trainer:
 
 type="mobilenetPretrainedFineTuneAll"
 wandb.init(project='visionAndPerceptionProject', entity='bbooss97',name=type)
-# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-device = torch.device('cpu')
+
+# device = torch.device('cpu')
 
 if type=="mlp":
     model=BasicMlp(7500,50,13)
@@ -128,12 +131,12 @@ elif type=="mobilenetPretrainedFineTuneAll":
 
 model.to(device)
 wandb.watch(model)
-batchsize=5
-epochs=5
+batchsize=16
+epochs=2
 loss=torch.nn.CrossEntropyLoss()
 
 optmimizer=torch.optim.Adam(model.parameters())
-trainer=Trainer(model,optmimizer,batchsize,epochs,loss,type=type,percentage=0.01)
+trainer=Trainer(model,optmimizer,batchsize,epochs,loss,type=type,percentage=1)
 
 trainer.train()
-
+torch.save(model,"./models/"+type+".pt")

@@ -11,7 +11,7 @@ def getPatches(obs):
     obs=obs.transpose(1,2)
     return obs
 
-type="mlp"
+type="resnetFrom0"
 
 model=torch.load("./models/"+type+".pt",map_location=torch.device('cpu'))
 
@@ -25,8 +25,11 @@ dataset = ChessDataset(percentage=1)
 id=random.randint(0,len(dataset)-1)
 image_tensor,label=dataset[id]
 image=fromTensorToPil(image_tensor)
-
 patches=getPatches(image_tensor.unsqueeze(0)).squeeze()
+typesToChange=["resnetFrom0","resnetPretrainedFineTuneFc","resnetPretrainedFineTuneAll","mobilenetPretrainedFineTuneAll"]
+if type in typesToChange:
+    patches =patches.reshape(64,50,50,3)
+    patches=torch.einsum("abcd->adbc",patches)
 results=model(patches).argmax(1).reshape(8,8).tolist()
 print("predicted")
 for i in results:
