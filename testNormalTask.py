@@ -13,7 +13,7 @@ def getPatches(obs):
     return obs
 
 type="resnetFrom0"
-model=torch.load("./models/"+type+".pt",map_location=torch.device('cpu'))
+model=torch.load("./weights/"+type+".pt",map_location=torch.device('cpu'))
 
 fromPilToTensor = transforms.Compose([
     transforms.PILToTensor()

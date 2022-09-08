@@ -11,7 +11,7 @@ trainedModels=["normalTask.pt","normalTaskAugmented.pt","modified0.5.pt","modifi
 howManyImages=10
 distorsion=1
 # model = torch.hub.load('./yolov5/', 'custom', path='yoloaugmentedbest.pt', source='local') 
-model = torch.hub.load('./yolov5/', 'custom', path=trainedModels[4], source='local') 
+model = torch.hub.load('./yolov5/', 'custom', path="./weights/"+trainedModels[4], source='local') 
 fromPilToTensor = transforms.Compose([
     transforms.PILToTensor()
 ])
