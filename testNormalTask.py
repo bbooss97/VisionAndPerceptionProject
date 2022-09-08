@@ -5,6 +5,7 @@ import numpy as np
 from nn import BasicMlp
 import torchvision
 import random 
+#script to use a model to get the pieces from the image
 def getPatches(obs):
     unfold=torch.nn.Unfold(kernel_size=(50,50),stride=50)
     obs=unfold(obs)
@@ -12,7 +13,6 @@ def getPatches(obs):
     return obs
 
 type="resnetFrom0"
-
 model=torch.load("./models/"+type+".pt",map_location=torch.device('cpu'))
 
 fromPilToTensor = transforms.Compose([
@@ -22,23 +22,29 @@ fromTensorToPil=transforms.Compose([
     transforms.ToPILImage()
 ])
 dataset = ChessDataset(percentage=1)
+#get a random image form the dataset
 id=random.randint(0,len(dataset)-1)
 image_tensor,label=dataset[id]
 image=fromTensorToPil(image_tensor)
 patches=getPatches(image_tensor.unsqueeze(0)).squeeze()
+#apply the model to the image
 typesToChange=["resnetFrom0","resnetPretrainedFineTuneFc","resnetPretrainedFineTuneAll","mobilenetPretrainedFineTuneAll"]
+#transpose
 if type in typesToChange:
     patches =patches.reshape(64,50,50,3)
     patches=torch.einsum("abcd->adbc",patches)
+#get predictions
 results=model(patches).argmax(1).reshape(8,8).tolist()
 print("predicted")
 for i in results:
     print(i)
 print("true labels")
+#get labels
 label=label.argmax(1).reshape(8,8).tolist()
 for i in label:
     print(i)
 errors=0
+#count the errors
 for i in range(8):
     for j in range(8):
         if results[i][j]!=label[i][j]:

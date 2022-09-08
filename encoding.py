@@ -1,3 +1,4 @@
+#class used to encode the pieces in numbers
 class Encoding:
     def __init__(self):
         self.encoding={
@@ -15,9 +16,11 @@ class Encoding:
             "k":12,
             "0":0
         }
+    #returns a list of encoded pieces
     def encode(self,list):
         encoded=[self.encoding[i] for i in list]
         return encoded
+    #returns a list of encoded pieces in a one hot encoding way
     def oneHotEncoding(self,list):
         res=[[0 for i in range(13)] for j in range(len(list))]
         for i,n in enumerate(list):

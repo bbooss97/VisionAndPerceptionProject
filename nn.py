@@ -1,5 +1,6 @@
 import torch
-
+#create a mlp to be used for the piece detection
+#with 5 layers 
 class BasicMlp(torch.nn.Module):
     def __init__(self, n_input, n_hidden, n_output):
         super(BasicMlp, self).__init__()
