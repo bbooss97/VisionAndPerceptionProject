@@ -3,6 +3,7 @@ from dataset import ChessDataset
 import torchvision.transforms as transforms
 import torch
 from PIL import ImageGrab
+from PIL import Image, ImageTransform
 import numpy as np
 from nn import BasicMlp
 import torchvision
@@ -50,10 +51,15 @@ def getPatches(obs):
     obs=obs.transpose(1,2)
     return obs
 def readImage(points):
-    screenshot = ImageGrab.grab()
+    screenshot = ImageGrab.grab().convert("RGB")
     fromPilToTensor = transforms.Compose([
     transforms.PILToTensor()
     ])
+    #from top left antiorary
+    transform=[*points[0],*points[1],*points[2],*points[3]]
+    screenshot = screenshot.transform((200,100), ImageTransform.QuadTransform(transform))
+
+
     return fromPilToTensor(screenshot)
 
 
