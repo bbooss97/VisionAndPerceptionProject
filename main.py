@@ -1,15 +1,15 @@
-from itertools import count
-from dataset import ChessDataset
 import torchvision.transforms as transforms
 import torch
+import os
 from PIL import ImageGrab
-from PIL import Image, ImageTransform
+from PIL import ImageTransform
 import numpy as np
 from nn import BasicMlp
 import torchvision
-import random 
 from pynput import mouse
 from pynput import keyboard
+import time
+#script to use a model to get the pieces from the image given points
 count=0
 points=[]
 accept=False
@@ -18,11 +18,12 @@ def on_press(key):
     global accept
     if count==4:
         return False
+    if key==keyboard.Key.shift_l:
+        accept=False
+        print("deselected")
     if key ==keyboard.Key.ctrl_l:
         accept=True
         print("select point")
-listener = keyboard.Listener(on_press=on_press)
-listener.start()
 
 def on_click(x, y, button, pressed):
     global count,points,accept
@@ -33,6 +34,9 @@ def on_click(x, y, button, pressed):
         print(count)
     if count==4:
         return False
+
+listener = keyboard.Listener(on_press=on_press)
+listener.start()
 listener = mouse.Listener(on_click=on_click)
 listener.start()
 
@@ -44,7 +48,7 @@ print(points)
 
 
 
-#script to use a model to get the pieces from the image
+
 def getPatches(obs):
     unfold=torch.nn.Unfold(kernel_size=(50,50),stride=50)
     obs=unfold(obs)
@@ -58,8 +62,6 @@ def readImage(points):
     #from top left antiorary
     transform=[*points[0],*points[1],*points[2],*points[3]]
     screenshot = screenshot.transform((200,100), ImageTransform.QuadTransform(transform))
-
-
     return fromPilToTensor(screenshot)
 
 
@@ -75,23 +77,26 @@ fromTensorToPil=transforms.Compose([
 
 # image_tensor=torchvision.io.read_image("./lichess.png")
 # image_tensor=image_tensor[:-1,:,:]
-image_tensor=readImage(points)
+while True:
+    os.system("cls")
+    image_tensor=readImage(points)
 
-image_tensor=image_tensor/255
-image=fromTensorToPil(image_tensor).resize((400,400))
-image_tensor=fromPilToTensor(image).float()
+    image_tensor=image_tensor/255
+    image=fromTensorToPil(image_tensor).resize((400,400))
+    image_tensor=fromPilToTensor(image).float()
 
-patches=getPatches(image_tensor.unsqueeze(0)).squeeze()
-#apply the model to the image
-typesToChange=["resnetFrom0","resnetPretrainedFineTuneFc","resnetPretrainedFineTuneAll","mobilenetPretrainedFineTuneAll"]
-#transpose
-if type in typesToChange:
-    patches =patches.reshape(64,50,50,3)
-    patches=torch.einsum("abcd->adbc",patches)
-#get predictions
-results=model(patches).argmax(1).reshape(8,8).tolist()
-print("predicted")
-for i in results:
-    print(', '.join('{:2d}'.format(f) for f in i))
-image.show()
+    patches=getPatches(image_tensor.unsqueeze(0)).squeeze()
+    #apply the model to the image
+    typesToChange=["resnetFrom0","resnetPretrainedFineTuneFc","resnetPretrainedFineTuneAll","mobilenetPretrainedFineTuneAll"]
+    #transpose
+    if type in typesToChange:
+        patches =patches.reshape(64,50,50,3)
+        patches=torch.einsum("abcd->adbc",patches)
+    #get predictions
+    results=model(patches).argmax(1).reshape(8,8).tolist()
+    print("predicted")
+    for i in results:
+        print(', '.join('{:2d}'.format(f) for f in i))
+    time.sleep(2)
+# image.show()
 
