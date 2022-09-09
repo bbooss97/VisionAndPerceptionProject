@@ -8,24 +8,30 @@ from nn import BasicMlp
 import torchvision
 import random 
 from pynput import mouse
+from pynput import keyboard
 count=0
 points=[]
-started=False
+accept=False
+
+def on_press(key):
+    global accept
+    if count==4:
+        return False
+    if key ==keyboard.Key.ctrl_l:
+        accept=True
+        print("select point")
+listener = keyboard.Listener(on_press=on_press)
+listener.start()
+
 def on_click(x, y, button, pressed):
-    global count,points,started
-    if button==mouse.Button.middle:
-        count=0
-        points=[]
-        started=True
-        print("started")
-    if pressed and button==mouse.Button.left and started:
+    global count,points,accept
+    if pressed and button==mouse.Button.left and accept:
         points.append((x,y))
         count+=1
+        accept=False
         print(count)
     if count==4:
         return False
-# with mouse.Listener(on_click=on_click,) as listener:
-#     listener.join()
 listener = mouse.Listener(on_click=on_click)
 listener.start()
 
