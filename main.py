@@ -61,9 +61,10 @@ def readImage(points):
     ])
     #from top left antiorary
     transform=[*points[0],*points[1],*points[2],*points[3]]
-    width=points[2][0]-points[0][0]
-    height=points[2][1]-points[0][1]
-    screenshot = screenshot.transform((width, height), ImageTransform.QuadTransform(transform))
+    # width=points[2][0]-points[0][0]
+    # height=points[2][1]-points[0][1]
+    screenshot = screenshot.transform((400,400), ImageTransform.QuadTransform(transform))
+    # screenshot.show()
     return fromPilToTensor(screenshot)
 
 
