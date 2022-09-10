@@ -7,11 +7,12 @@ import random
 import sys
 import torch.optim as optim
 #select type of models for the modified task
-trainedModels=["normalTask.pt","normalTaskAugmented.pt","modified0.5.pt","modified0.75.pt",'modified1']
+trainedModels=["normalTask.pt","normalTaskAugmented.pt","modified0.5.pt","modified0.75.pt",'modified1.pt']
 howManyImages=10
-distorsion=1
+distorsion=0.75
 # model = torch.hub.load('./yolov5/', 'custom', path='yoloaugmentedbest.pt', source='local') 
-model = torch.hub.load('./yolov5/', 'custom', path="./weights/"+trainedModels[4], source='local') 
+path="./weights/"+trainedModels[3]
+model = torch.hub.load('./yolov5/', 'custom', path=path, source='local',force_reload=True) 
 fromPilToTensor = transforms.Compose([
     transforms.PILToTensor()
 ])
@@ -27,4 +28,5 @@ for i in range(howManyImages):
     #modify image get results and show the image
     img_tensor = randomPerspective(img)
     results = model(img_tensor)
+    print(results.xywh)
     results.show()
