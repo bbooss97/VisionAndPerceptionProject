@@ -95,6 +95,6 @@ while True:
     print("predicted")
     for i in board:
         print(', '.join('{:2d}'.format(f) for f in i))
-    time.sleep(2)
+    time.sleep(.5)
 # image.show()
 
