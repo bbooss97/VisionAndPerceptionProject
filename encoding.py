@@ -16,6 +16,21 @@ class Encoding:
             "k":12,
             "0":0
         }
+        self.reverseEncoding={
+            1:"P",
+            2:"p",
+            3:"R",
+            4:"r",
+            5:"N",
+            6:"n",
+            7:"B",
+            8:"b",
+            9:"Q",
+            10:"q",
+            11:"K",
+            12:"k",
+            0:"0"
+        }
     #returns a list of encoded pieces
     def encode(self,list):
         encoded=[self.encoding[i] for i in list]

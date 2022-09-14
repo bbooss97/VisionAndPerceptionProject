@@ -5,6 +5,7 @@ import numpy as np
 from nn import BasicMlp
 import torchvision
 import random 
+from encoding import Encoding
 #script to use a model to get the pieces from the image
 def getPatches(obs):
     unfold=torch.nn.Unfold(kernel_size=(50,50),stride=50)
@@ -36,12 +37,15 @@ if type in typesToChange:
 #get predictions
 results=model(patches).argmax(1).reshape(8,8).tolist()
 print("predicted")
+encoding=Encoding()
 for i in results:
+    i=[encoding.reverseEncoding[j]for j in i]
     print(i)
 print("true labels")
 #get labels
 label=label.argmax(1).reshape(8,8).tolist()
 for i in label:
+    i=[encoding.reverseEncoding[j]for j in i]
     print(i)
 errors=0
 #count the errors

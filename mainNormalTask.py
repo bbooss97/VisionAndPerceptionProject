@@ -1,6 +1,7 @@
 import torchvision.transforms as transforms
 import torch
 import os
+from encoding import Encoding
 from PIL import ImageGrab
 from PIL import ImageTransform
 import numpy as np
@@ -77,7 +78,7 @@ fromPilToTensor = transforms.Compose([
 fromTensorToPil=transforms.Compose([
     transforms.ToPILImage()
 ])
-
+encoding=Encoding()
 # image_tensor=torchvision.io.read_image("./lichess.png")
 # image_tensor=image_tensor[:-1,:,:]
 while True:
@@ -99,7 +100,9 @@ while True:
     results=model(patches).argmax(1).reshape(8,8).tolist()
     print("predicted")
     for i in results:
-        print(', '.join('{:2d}'.format(f) for f in i))
+        i=[encoding.reverseEncoding[j]for j in i]
+        print(i)
+        # print(', '.join('{:2d}'.format(f) for f in i))
     time.sleep(.5)
 # image.show()
 

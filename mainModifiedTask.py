@@ -6,6 +6,7 @@ from PIL import ImageTransform
 import numpy as np
 from nn import BasicMlp
 import torchvision
+from encoding import Encoding
 from pynput import mouse
 from pynput import keyboard
 import time
@@ -79,7 +80,7 @@ fromTensorToPil=transforms.Compose([
     transforms.ToPILImage()
 ])
 
-
+encoding=Encoding()
 while True:
     os.system("cls")
     image=readImage(points)
@@ -94,7 +95,9 @@ while True:
         board[centery][centerx]=int(result[0][i][5])
     print("predicted")
     for i in board:
-        print(', '.join('{:2d}'.format(f) for f in i))
+        i=[encoding.reverseEncoding[j]for j in i]
+        print(i)
+        # print(', '.join('{:2d}'.format(f) for f in i))
     time.sleep(.5)
 # image.show()
 
